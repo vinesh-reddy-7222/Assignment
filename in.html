@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #A1E3F9;
+        }
+        .slider {
+            position: relative;
+            width: 500px;
+            height: 300px;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        h1{
+            align-items: center;
+            font-size: 2em;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <button class="btn prev" onclick="prevImage()">&#10094;</button>
+        <img id="slider-image" src="images.jpg" alt="Image Slider">
+        <button class="btn next" onclick="nextImage()">&#10095;</button>
+        <h1 >Image Slider</h1>
+    </div>
+    
+    <script>
+        const images = [
+            'images.jpg',
+            'image-1.avif',
+            'images 2.jpg'
+        ];
+        let currentIndex = 0;
+        
+        function showImage(index) {
+            document.getElementById('slider-image').src = images[index];
+        }
+        
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+        
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+        
+        showImage(currentIndex);
+    </script>
+</body>
+</html>
